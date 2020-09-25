@@ -6,4 +6,4 @@
 # Version : 1.0
 #########################################################################
 #!/bin/bash
-make  ARCH=arm CROSS_COMPILE=arm-linux- -j20
+make ARCH=arm CROSS_COMPILE=arm-linux- -j30

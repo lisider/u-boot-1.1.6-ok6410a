@@ -158,7 +158,7 @@ endif
 endif
 endif
 
-CROSS_COMPILE = /usr/local/arm/4.3.2/bin/arm-linux-
+CROSS_COMPILE = /home/suweishuai/bin/tools/arm/4.3.2/bin/
 export	CROSS_COMPILE
 
 # load other configuration
