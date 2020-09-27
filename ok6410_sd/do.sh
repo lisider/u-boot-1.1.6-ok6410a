@@ -18,14 +18,19 @@ fi
 ############################### STEP0 分区
 
 #sd卡32G,62410752个sector
-#    1. 512M 分区 (0-),用于zImage,fat16
-#    2.      分区 (-62409165) ,用于rootfs,ext3
+#    1. 512M 分区 (2048-1050623),用于zImage,fat16 // /dev/sdd1            2048     1050623      524288   83  Linux
+#    2.      分区 (1050624-62409165) ,用于rootfs,ext3
 #    3. 剩余未分区(62409166-62410752),用于u-boot
 
 # 62409166-62410752 排布
 
 # |_________________|________|______________|______________|
 # BL2(544个sector)  BL1(16)  signature(1)   Reserved(1025)
+
+############################### STEP0.5 制作文件系统
+
+#sudo mkfs.vfat -F 16 /dev/sdd1
+#sudo mkfs.ext3  /dev/sdd2
 
 ############################### STEP1 u-boot
 
@@ -68,6 +73,8 @@ if [ -e /dev/sdd1 ];then
     echo COPY ${zImage}
     sudo mount  /dev/sdd1  /mnt
     sudo cp ${zImage} /mnt
+    sudo cp System.map /mnt
+    sudo cp config /mnt
     sudo umount /mnt
 fi
 
