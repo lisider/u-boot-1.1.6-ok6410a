@@ -187,7 +187,7 @@
 
 #define CONFIG_BOOTDELAY	1
 
-#define CONFIG_BOOTARGS    	"root=/dev/mtdblock2 rootfstype=yaffs2 init=/linuxrc console=ttySAC0,115200"
+#define CONFIG_BOOTARGS    	"console=ttySAC0 root=/dev/mmcblk0p2 rw rootfstype=ext3 rootwait"
 
 
 #define CONFIG_ETHADDR		00:40:5c:26:0a:5b
@@ -507,6 +507,7 @@
 
 
 #if defined(FORLINX_BOOT_NAND)
+#define CONFIG_MMC	1
 #define CONFIG_BOOT_NAND
 #define CFG_ENV_IS_IN_NAND
 //#define CFG_NAND_LARGEPAGE_SAVEENV
@@ -541,7 +542,8 @@
 #if	defined(UBOOT_LCD_LOGO)
 #define CONFIG_BOOTCOMMAND  "nand led-start;nand erase  ;fatload mmc 0:1 0x50008000 u-boot.bin;nand write.uboot 0x50008000 0 0x200000;fatload mmc 0:1 0x50008000 logo.bmp;nand write.i    0x50008000 0x200000 0x80000;fatload mmc 0:1 0x50008000 zImage;nand write.e    0x50008000 0x500000 0x500000; fatload mmc 0:1 0x50008000 rootfs.yaffs2; nand write.yaffs2 0x50008000 0x01e00000 $filesize;  nand  beep; nand led-end"
 #else
-#define CONFIG_BOOTCOMMAND  "nand led-start;nand erase  ;fatload mmc 0:1 0x50008000 u-boot.bin;nand write.uboot 0x50008000 0 0x200000;fatload mmc 0:1 0x50008000 zImage;nand write.e    0x50008000 0x500000 0x500000; fatload mmc 0:1 0x50008000 rootfs.yaffs2; nand write.yaffs2 0x50008000 0x01e00000 $filesize;  nand  beep; nand led-end"
+//#define CONFIG_BOOTCOMMAND  "nand led-start;nand erase  ;fatload mmc 0:1 0x50008000 u-boot.bin;nand write.uboot 0x50008000 0 0x200000;fatload mmc 0:1 0x50008000 zImage;nand write.e    0x50008000 0x500000 0x500000; fatload mmc 0:1 0x50008000 rootfs.yaffs2; nand write.yaffs2 0x50008000 0x01e00000 $filesize;  nand  beep; nand led-end"
+#define CONFIG_BOOTCOMMAND  "fatload mmc 0:1 0x50008000 zImage; bootm 0x50008000"
 #endif
 
 #define CFG_MALLOC_LEN		(CFG_ENV_SIZE + 1024*1024)

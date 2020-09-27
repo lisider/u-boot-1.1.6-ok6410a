@@ -6,7 +6,7 @@
 # Version : 1.0
 #########################################################################
 #!/bin/bash
-make  ARCH=arm CROSS_COMPILE=arm-linux- forlinx_nand_ram256_config
+#make  ARCH=arm CROSS_COMPILE=arm-linux- forlinx_nand_ram256_config
 
-#make  ARCH=arm CROSS_COMPILE=arm-linux- forlinx_sd_ram256_config
+make  ARCH=arm CROSS_COMPILE=arm-linux- forlinx_sd_ram256_config
 

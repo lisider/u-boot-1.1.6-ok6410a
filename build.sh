@@ -6,4 +6,4 @@
 # Version : 1.0
 #########################################################################
 #!/bin/bash
-make ARCH=arm CROSS_COMPILE=arm-linux- -j30
+make ARCH=arm CROSS_COMPILE=arm-linux- -j30 && cp u-boot.bin ok6410_sd/
